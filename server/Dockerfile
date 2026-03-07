@@ -75,8 +75,8 @@ ENV ENABLE_WEB_INTERFACE="true"
 # Health check
 # Use Python stdlib instead of curl so the probe works even if curl is absent.
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=5 \
-    CMD python -c "import os,urllib.request; port=os.getenv('PORT','8000'); r=urllib.request.urlopen(f'http://localhost:{port}/health', timeout=3); raise SystemExit(0 if r.status==200 else 1)"
+    CMD python -c "import os,urllib.request; port=os.getenv('PORT','7860'); r=urllib.request.urlopen(f'http://localhost:{port}/health', timeout=3); raise SystemExit(0 if r.status==200 else 1)"
 
 # Run the FastAPI server
-# Respect PORT if the platform injects one; default to 8000.
-CMD ["sh", "-c", "cd /app/env && uvicorn server.app:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# Respect PORT if the platform injects one; default to 7860.
+CMD ["sh", "-c", "cd /app/env && uvicorn server.app:app --host 0.0.0.0 --port ${PORT:-7860}"]
