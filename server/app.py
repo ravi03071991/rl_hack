@@ -39,6 +39,11 @@ except Exception as e:  # pragma: no cover
 from models import BasicOpenenvAction, BasicOpenenvObservation
 from .basic_openenv_environment import BasicOpenenvEnvironment
 from fastapi.responses import RedirectResponse
+import os
+
+
+# Required for OpenEnv to mount the HF-style web UI at /web.
+os.environ.setdefault("ENABLE_WEB_INTERFACE", "true")
 
 
 # Create the app with web interface and README integration

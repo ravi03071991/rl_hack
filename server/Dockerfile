@@ -70,6 +70,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 
 # Set PYTHONPATH so imports work correctly
 ENV PYTHONPATH="/app/env:$PYTHONPATH"
+ENV ENABLE_WEB_INTERFACE="true"
 
 # Health check
 # Use Python stdlib instead of curl so the probe works even if curl is absent.
