@@ -38,6 +38,7 @@ except Exception as e:  # pragma: no cover
 # Import from local models.py (PYTHONPATH includes /app/env in Docker)
 from models import BasicOpenenvAction, BasicOpenenvObservation
 from .basic_openenv_environment import BasicOpenenvEnvironment
+from fastapi.responses import RedirectResponse
 
 
 # Create the app with web interface and README integration
@@ -48,6 +49,12 @@ app = create_app(
     env_name="basic_openenv",
     max_concurrent_envs=1,  # increase this number to allow more concurrent WebSocket sessions
 )
+
+
+@app.get("/", include_in_schema=False)
+def root_redirect():
+    """Match HF Space UX: open app at /web UI."""
+    return RedirectResponse(url="/web")
 
 
 def main():

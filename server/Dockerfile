@@ -72,9 +72,10 @@ ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH="/app/env:$PYTHONPATH"
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+# Use Python stdlib instead of curl so the probe works even if curl is absent.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=5 \
+    CMD python -c "import os,urllib.request; port=os.getenv('PORT','8000'); r=urllib.request.urlopen(f'http://localhost:{port}/health', timeout=3); raise SystemExit(0 if r.status==200 else 1)"
 
 # Run the FastAPI server
-# The module path is constructed to work with the /app/env structure
-CMD ["sh", "-c", "cd /app/env && uvicorn server.app:app --host 0.0.0.0 --port 8000"]
+# Respect PORT if the platform injects one; default to 8000.
+CMD ["sh", "-c", "cd /app/env && uvicorn server.app:app --host 0.0.0.0 --port ${PORT:-8000}"]
