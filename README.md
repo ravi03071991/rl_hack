@@ -268,3 +268,7 @@ We use Unsloth + GRPO to train an LLM agent on this environment:
 - **Train/eval split**: 80/20 (62 train, 15 eval tasks)
 
 See `training/` directory in the parent repo for training scripts.
+
+## Live Demo
+
+Try the environment on Hugging Face Spaces: https://huggingface.co/spaces/devxpy/rl_hack
