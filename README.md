@@ -401,10 +401,6 @@ The biggest gains are on **complex multi-step tasks** — scores more than doubl
 
 The moving average reward trends upward from ~2-3 early in training to ~4-5 by the end, showing consistent learning.
 
-### Training Curves
-
-![Training Curves](training_curves.png)
-
 ### Quick start (Colab)
 
 1. Open `train_hr_agent.ipynb` in Google Colab
