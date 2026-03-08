@@ -1,0 +1,6 @@
+spec_version: 1
+name: enterprise_hr_it_v2_env
+type: space
+runtime: fastapi
+app: greenfield_hr_hard.hr_hard_env.app_v2:app
+port: 7863
