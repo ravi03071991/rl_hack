@@ -15,7 +15,7 @@ tags:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ravi03071991/rl_hack/blob/master/train_hr_agent.ipynb)
 
-An OpenEnv-compatible RL environment that simulates enterprise HR onboarding and offboarding workflows. The agent orchestrates across **6 enterprise apps** — HRIS, IT Asset Management, IAM, Email, Slack, and Calendar — using 25 tools to complete multi-step tasks in a realistic HR system (200+ employees, 8 departments, RBAC, approval chains).
+An OpenEnv-compatible RL environment that simulates enterprise HR onboarding and offboarding workflows. The agent orchestrates across **6 enterprise apps** — Workday, ServiceNow, IAM, Email, Slack, and Calendar — using 25 tools to complete multi-step tasks in a realistic HR system (200+ employees, 8 departments, RBAC, approval chains).
 
 Built for the [OpenEnv Hackathon SF](https://cerebralvalley.ai/e/openenv-hackathon-sf/details) — **Statement 3.1: Professional Tasks** (Scaler AI Labs partner theme: Multi-App RL Environment for Enterprise Workflows).
 
