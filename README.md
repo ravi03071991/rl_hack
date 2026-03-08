@@ -13,6 +13,8 @@ tags:
 
 # HR Onboarding & Offboarding Environment
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ravi03071991/rl_hack/blob/master/train_hr_agent.ipynb)
+
 An OpenEnv-compatible RL environment that simulates enterprise HR onboarding and offboarding workflows. The agent interacts with a realistic HR system (200+ employees, 8 departments, RBAC, approval chains) by calling tools to complete multi-step tasks.
 
 Built for the Scaler AI hackathon (Statement 3.1).
@@ -403,9 +405,7 @@ The moving average reward trends upward from ~2-3 early in training to ~4-5 by t
 
 ### Quick start (Colab)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ravi03071991/rl_hack/blob/master/train_hr_agent.ipynb)
-
-1. Click the badge above to open `train_hr_agent.ipynb` in Google Colab
+1. Click the Colab badge at the top to open `train_hr_agent.ipynb` in Google Colab
 2. Select a GPU runtime
 3. Run all cells — installs dependencies, trains, and evaluates automatically
 
