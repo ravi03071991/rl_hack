@@ -19,6 +19,17 @@ An OpenEnv-compatible RL environment that simulates enterprise HR onboarding and
 
 Built for the [OpenEnv Hackathon SF](https://cerebralvalley.ai/e/openenv-hackathon-sf/details) — **Statement 3.1: Professional Tasks** (Scaler AI Labs partner theme: Multi-App RL Environment for Enterprise Workflows).
 
+### Key Results
+
+> **GRPO training on Llama 3.2-1B-Instruct improves mean task score by +67% (0.37 → 0.62).**
+> Complex multi-step task scores **more than double** (0.26 → 0.68). Gains generalize to held-out test tasks.
+
+| | Baseline | Trained | Improvement |
+|---|---------|---------|-------------|
+| Mean Score | 0.370 | 0.617 | **+67%** |
+| Complex Tasks | 0.26 | 0.68 | **+162%** |
+| Pass Rate | 15.4% | 19.2% | +3.8pp |
+
 ## Quick Start
 
 ```python
