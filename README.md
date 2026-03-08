@@ -1,15 +1,4 @@
----
-title: HR Onboarding & Offboarding Environment
-emoji: 🏢
-colorFrom: green
-colorTo: blue
-sdk: docker
-pinned: false
-app_port: 7860
-base_path: /playground
-tags:
-  - openenv
----
+
 
 # HR Onboarding & Offboarding Environment
 
