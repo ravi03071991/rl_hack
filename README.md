@@ -226,8 +226,11 @@ rl_hack/
 ├── __init__.py                        # Module exports
 ├── client.py                          # HROnboardingEnv client
 ├── models.py                          # Action/Observation Pydantic models
-├── test_with_llm.py                   # Test script (GPT agent)
+├── test_with_llm.py                   # Test single task with GPT agent
+├── test_all_tasks.py                  # Evaluate all 77 tasks
+├── train_hr_agent.ipynb               # GRPO training notebook (Unsloth)
 ├── .env                               # API keys (gitignored)
+├── outputs/                           # Evaluation results
 └── server/
     ├── __init__.py
     ├── app.py                         # FastAPI application
@@ -260,7 +263,7 @@ You can test the environment locally using GPT (or any OpenAI-compatible model) 
 
 2. Install dependencies:
    ```bash
-   pip install openai python-dotenv openenv-core
+   uv pip install -e ".[eval]"
    ```
 
 ### Run
@@ -269,12 +272,15 @@ You can test the environment locally using GPT (or any OpenAI-compatible model) 
 cd rl_hack
 
 # Test on default task (simple lookup)
-uv run python -m test_with_llm.py
+uv run python -m test_with_llm
 
 # Test a specific task by index (0-76)
 uv run python -m test_with_llm 14    # medium onboarding task
 uv run python -m test_with_llm 24    # complex full onboarding
 uv run python -m test_with_llm 55    # edge case (headcount limit)
+
+# Run full evaluation across all 77 tasks
+uv run python test_all_tasks.py
 ```
 
 The script will:
@@ -322,14 +328,34 @@ Passed: True
 | 55-66 | Edge case | Various | Headcount limits, license caps, RBAC |
 | 67-76 | Complex | Cross-workflow | Transfers, rehires, manager departures |
 
+## Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/ravi03071991/rl_hack.git
+cd rl_hack
+
+# Install core dependencies
+uv pip install -e .
+
+# Install with evaluation support (adds openai)
+uv pip install -e ".[eval]"
+
+# Install with training support (adds unsloth, trl, torch, etc.)
+uv pip install -e ".[train]"
+
+# Install everything
+uv pip install -e ".[eval,train,dev]"
+```
+
 ## Building & Running
 
 ```bash
+# Run locally (as OpenEnv HTTP server with playground UI)
+uvicorn server.app:app --reload --host 0.0.0.0 --port 7860
+
 # Build Docker image
 docker build -t hr-onboarding-env:latest -f server/Dockerfile .
-
-# Run locally (as OpenEnv HTTP server)
-uvicorn server.app:app --reload --host 0.0.0.0 --port 7860
 
 # Deploy to HF Spaces
 openenv push
@@ -337,14 +363,19 @@ openenv push
 
 ## Training
 
-We use Unsloth + GRPO to train an LLM agent on this environment:
+We use Unsloth + GRPO to train an LLM agent on this environment. See [`train_hr_agent.ipynb`](train_hr_agent.ipynb) for the full training notebook (runs on Google Colab T4).
 
-- **Model**: Qwen 2.5-7B-Instruct (4-bit quantized)
+- **Model**: Qwen 2.5-7B-Instruct (4-bit quantized, LoRA rank 8)
 - **Algorithm**: GRPO (Group Relative Policy Optimization)
-- **Rollouts**: 8 per prompt
-- **Train/eval split**: 80/20 (62 train, 15 eval tasks)
+- **Reward functions**: Valid JSON + rubric score + efficiency
+- **Training**: 300 steps, 2 generations per prompt
+- **Baseline (GPT-4o-mini)**: 50.6% pass rate, 0.791 mean score
 
-See `training/` directory in the parent repo for training scripts.
+### Quick start (Colab)
+
+1. Open `train_hr_agent.ipynb` in Google Colab
+2. Select a T4 GPU runtime
+3. Run all cells — installs dependencies, trains, and evaluates automatically
 
 ## Live Demo
 
