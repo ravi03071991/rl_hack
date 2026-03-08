@@ -189,6 +189,41 @@
       color: #d0d0d0;
     }
 
+    .ideal-result {
+      margin-top: 14px;
+      background: #141a26;
+      border: 1px solid #243049;
+      border-left: 3px solid #58a6ff;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .ideal-result h4 {
+      font-size: 12px;
+      color: #9cc7ff;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .ideal-result .ideal-label {
+      font-size: 11px;
+      color: #7f8da3;
+      margin: 6px 0 4px;
+    }
+
+    .ideal-result ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #c7d2e1;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .ideal-result li {
+      margin-bottom: 3px;
+    }
+
     .step-indicator {
       display: flex;
       align-items: center;
@@ -640,6 +675,7 @@
         body: JSON.stringify({ task_idx: idx }),
       });
       const data = await res.json();
+      maxSteps = data.max_steps || maxSteps;
 
       // Update instruction
       const instrEl = document.getElementById('taskInstruction');
@@ -650,7 +686,8 @@
           <span class="task-tag tag-${task.category}">${task.category}</span>
           ${data.task_id}
         </h3>
-        <p>${data.instruction}</p>
+        <p>${escapeHtml(data.instruction)}</p>
+        ${renderIdealResult(task)}
         <div class="step-indicator">
           <span>Step ${currentStep}/${maxSteps}</span>
           <div class="step-bar"><div class="step-bar-fill" style="width: 0%"></div></div>
@@ -760,6 +797,28 @@
       log.scrollTop = log.scrollHeight;
     }
 
+    function renderIdealResult(task) {
+      if (!task) return '';
+
+      const expectedTools = (task.expected_tools || [])
+        .map(t => `<li><code>${escapeHtml(String(t))}</code></li>`)
+        .join('');
+
+      const criteria = (task.rubric_criteria || [])
+        .map(c => `<li>${escapeHtml(c.description || c.name || 'Criterion')}</li>`)
+        .join('');
+
+      return `
+        <div class="ideal-result">
+          <h4>Ideal Result</h4>
+          <div class="ideal-label">Expected tools:</div>
+          <ul>${expectedTools || '<li>Not specified</li>'}</ul>
+          <div class="ideal-label">Success criteria:</div>
+          <ul>${criteria || '<li>Not specified</li>'}</ul>
+        </div>
+      `;
+    }
+
     // --- Evaluation ---
     function showEvaluation(evalData) {
       const section = document.getElementById('evalSection');
@@ -808,6 +867,15 @@
           <div class="tool-desc">${t.description.substring(0, 80)}${t.description.length > 80 ? '...' : ''}</div>
         </div>
       `).join('');
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     }
 
     function selectTool(name) {

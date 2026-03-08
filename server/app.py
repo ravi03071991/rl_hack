@@ -77,6 +77,7 @@ def get_tasks():
             "difficulty": task.difficulty,
             "category": task.category,
             "expected_tools": task.expected_tools,
+            "rubric_criteria": task.rubric_criteria,
             "num_criteria": len(task.rubric_criteria),
         })
 
