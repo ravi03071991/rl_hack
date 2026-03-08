@@ -403,7 +403,9 @@ The moving average reward trends upward from ~2-3 early in training to ~4-5 by t
 
 ### Quick start (Colab)
 
-1. Open `train_hr_agent.ipynb` in Google Colab
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ravi03071991/rl_hack/blob/master/train_hr_agent.ipynb)
+
+1. Click the badge above to open `train_hr_agent.ipynb` in Google Colab
 2. Select a GPU runtime
 3. Run all cells — installs dependencies, trains, and evaluates automatically
 
