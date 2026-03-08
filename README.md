@@ -407,9 +407,9 @@ We use Unsloth + GRPO to train an LLM agent on this environment. See [`train_hr_
 - **Model**: Llama 3.2-1B-Instruct (4-bit quantized, LoRA rank 8)
 - **Algorithm**: GRPO (Group Relative Policy Optimization)
 - **Reward functions** (3 components, total range -4.0 to +9.0):
-  - **Valid JSON** (-2.0 to +1.0): Penalizes malformed tool calls, rewards valid JSON with correct tool name
-  - **Rubric score** (-1.0 to +7.0): Checks task-specific criteria (tool usage, parameter values, sequencing, policy compliance)
-  - **Efficiency** (-1.0 to +1.0): Rewards completing tasks in fewer steps, penalizes unnecessary tool calls
+  - **Valid JSON** (-2.0 to +1.0): Is the output valid JSON? Does it contain a recognized tool name?
+  - **Rubric score** (-1.0 to +7.0): Replays tool calls against the environment and checks task-specific rubric — were the right tools called (`tool_used`), with correct parameters (`param_value`, `param_contains`), in the right order (`tool_order`), the right number of times (`tool_count`)? Bonus for passing all criteria.
+  - **Efficiency** (-1.0 to +1.0): Fewer tool calls = higher reward (≤3 calls: +1.0, ≤6: +0.5, ≤10: 0.0, >10: -0.5)
 - **Training**: 300 steps, 6 generations per prompt, lr=5e-5 with cosine schedule
 - **Data split**: 70/30 stratified train/test (52 train, 25 test tasks)
 
