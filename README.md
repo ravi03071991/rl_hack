@@ -30,6 +30,26 @@ Built for the [OpenEnv Hackathon SF](https://cerebralvalley.ai/e/openenv-hackath
 | Complex Tasks | 0.26 | 0.68 | **+162%** |
 | Pass Rate | 15.4% | 19.2% | +3.8pp |
 
+### Example: Complex Onboarding Task
+
+> **Task:** "Fully onboard John Lee as L3 Team Lead in Data Science. Create employee record, assign a laptop, provision accounts, set up access roles, send welcome email, and schedule orientation."
+
+The agent must orchestrate across all 6 apps in the correct order:
+
+```
+Step 1  [Workday]     → hr_create_employee(name="John Lee", dept="Data Science", level="L3")
+Step 2  [Workday]     → onboarding_create_request(employee_id="emp_0201")
+Step 3  [ServiceNow]  → it_get_available_assets(asset_type="laptop")
+Step 4  [ServiceNow]  → it_assign_asset(asset_id="asset_003", employee_id="emp_0201")
+Step 5  [ServiceNow]  → it_create_account(employee_id="emp_0201", account_types=["email","slack","github"])
+Step 6  [Okta]        → access_assign_role(employee_id="emp_0201", role_id="ds_contributor")
+Step 7  [Email]       → email_send(to="data-science@company.com", subject="Welcome John Lee!")
+Step 8  [Slack]       → slack_send_message(channel="#data-science", text="Welcome John Lee...")
+Step 9  [Calendar]    → meeting_schedule(title="Orientation", attendees=["emp_0201", manager])
+```
+
+**Rubric:** 10+ criteria checked — tool usage, parameter correctness, sequencing, policy compliance.
+
 ## Table of Contents
 
 - [Quick Start](#quick-start)
