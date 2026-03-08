@@ -22,7 +22,7 @@ RUN apt-get update && \
 
 # Build argument to control whether we're building standalone or in-repo
 ARG BUILD_MODE=in-repo
-ARG ENV_NAME=basic_openenv
+ARG ENV_NAME=hr_onboarding_env
 
 # Copy environment code (always at root of build context)
 COPY . /app/env

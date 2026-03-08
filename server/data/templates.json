@@ -1,0 +1,86 @@
+[
+  {
+    "template_id": "tmpl_001",
+    "name": "welcome_email",
+    "subject": "Welcome to {{company_name}}, {{first_name}}!",
+    "body": "Dear {{first_name}} {{last_name}},\n\nWelcome to {{company_name}}! We are thrilled to have you join the {{department}} team as a {{job_title}}.\n\nYour start date is {{start_date}}, and your manager will be {{manager_name}}. Please arrive at {{office_location}} by {{arrival_time}} on your first day.\n\nHere are a few things to prepare before your first day:\n- Bring a valid government-issued photo ID\n- Review the pre-boarding documents sent to your personal email\n- Complete any outstanding background check forms\n\nYour onboarding buddy will be {{buddy_name}}, who will help you get settled during your first few weeks.\n\nIf you have any questions before your start date, please don't hesitate to reach out to your HR contact at {{hr_contact_email}}.\n\nWe look forward to seeing you!\n\nBest regards,\n{{hr_sender_name}}\nHuman Resources\n{{company_name}}",
+    "channel": "email"
+  },
+  {
+    "template_id": "tmpl_002",
+    "name": "welcome_slack",
+    "subject": null,
+    "body": "Hey everyone! :wave: Please join me in welcoming *{{first_name}} {{last_name}}* to the {{department}} team! {{first_name}} is joining us as a *{{job_title}}* starting {{start_date}}.\n\n{{first_name}}, a little about your new team: {{team_description}}\n\nYour onboarding buddy is {{buddy_name}} -- feel free to reach out to them with any questions. We're so glad to have you on board! :tada:",
+    "channel": "slack"
+  },
+  {
+    "template_id": "tmpl_003",
+    "name": "farewell_email",
+    "subject": "Farewell and Best Wishes to {{first_name}} {{last_name}}",
+    "body": "Dear Team,\n\nI am writing to let you know that {{first_name}} {{last_name}} will be leaving {{company_name}} effective {{last_day}}.\n\n{{first_name}} has been a valued member of the {{department}} team for {{tenure}}, and we wish them all the best in their future endeavors.\n\nPlease join us for a farewell gathering on {{farewell_event_date}} at {{farewell_event_time}} in {{farewell_event_location}}.\n\nFor any ongoing projects or handover questions, please reach out to {{handover_contact_name}} ({{handover_contact_email}}).\n\nWe thank {{first_name}} for their contributions and wish them continued success.\n\nBest regards,\n{{manager_name}}\n{{department}}",
+    "channel": "email"
+  },
+  {
+    "template_id": "tmpl_004",
+    "name": "farewell_slack",
+    "subject": null,
+    "body": "Hi team -- I wanted to share that *{{first_name}} {{last_name}}* will be moving on from {{company_name}}, with {{last_day}} being their last day.\n\n{{first_name}} has been an incredible part of the {{department}} team, and we're grateful for everything they've contributed over the past {{tenure}}.\n\nPlease stop by the farewell gathering on {{farewell_event_date}} to say goodbye and wish them well! :heart:\n\nFor any project handovers, please contact {{handover_contact_name}}.",
+    "channel": "slack"
+  },
+  {
+    "template_id": "tmpl_005",
+    "name": "onboarding_reminder",
+    "subject": "Reminder: Onboarding Tasks Due for {{first_name}} {{last_name}}",
+    "body": "Dear {{recipient_name}},\n\nThis is a reminder that the following onboarding tasks for {{first_name}} {{last_name}} ({{job_title}}, {{department}}) are due by {{due_date}}:\n\n{{task_list}}\n\nNew hire start date: {{start_date}}\nDays remaining: {{days_remaining}}\n\nPlease complete these tasks as soon as possible to ensure a smooth onboarding experience. You can track progress in the onboarding dashboard at {{dashboard_url}}.\n\nIf you have any questions or need assistance, contact {{hr_contact_name}} at {{hr_contact_email}}.\n\nThank you,\nHR Onboarding System",
+    "channel": "email"
+  },
+  {
+    "template_id": "tmpl_006",
+    "name": "offboarding_reminder",
+    "subject": "Reminder: Offboarding Tasks Due for {{first_name}} {{last_name}}",
+    "body": "Dear {{recipient_name}},\n\nThis is a reminder that the following offboarding tasks for {{first_name}} {{last_name}} ({{job_title}}, {{department}}) must be completed by {{due_date}}:\n\n{{task_list}}\n\nLast working day: {{last_day}}\nDays remaining: {{days_remaining}}\n\nTimely completion of these tasks is critical for security compliance and a smooth transition. Track progress at {{dashboard_url}}.\n\nIf you have any questions, contact {{hr_contact_name}} at {{hr_contact_email}}.\n\nThank you,\nHR Offboarding System",
+    "channel": "email"
+  },
+  {
+    "template_id": "tmpl_007",
+    "name": "asset_assignment_confirmation",
+    "subject": "IT Asset Assigned: {{asset_type}} - {{asset_model}}",
+    "body": "Dear {{first_name}} {{last_name}},\n\nThe following IT asset has been assigned to you:\n\nAsset ID: {{asset_id}}\nType: {{asset_type}}\nBrand/Model: {{asset_brand}} {{asset_model}}\nSpecs: {{asset_specs}}\nSerial Number: {{serial_number}}\n\nAssignment Date: {{assignment_date}}\nPickup Location: {{pickup_location}}\n\nPlease review and acknowledge the IT Asset Usage Policy at {{policy_url}}. By accepting this asset, you agree to the terms outlined in the policy.\n\nIf you experience any issues with your equipment, please submit a ticket at {{support_url}} or contact IT Support at {{it_support_email}}.\n\nBest regards,\n{{it_admin_name}}\nIT Department",
+    "channel": "email"
+  },
+  {
+    "template_id": "tmpl_008",
+    "name": "access_grant_notification",
+    "subject": "Access Granted: {{role_name}} Role",
+    "body": "Dear {{first_name}} {{last_name}},\n\nYou have been granted the following access role:\n\nRole: {{role_name}}\nRole ID: {{role_id}}\nDescription: {{role_description}}\nGranted By: {{granted_by}}\nEffective Date: {{effective_date}}\n\nPermissions included:\n{{permissions_list}}\n\nPlease review the access policies and acceptable use guidelines at {{policy_url}}. If you believe you have been granted access in error, or if you need additional permissions, please contact your manager or the Security team at {{security_email}}.\n\nThis access will be reviewed periodically as part of our security compliance program.\n\nBest regards,\nAccess Management System\n{{company_name}}",
+    "channel": "email"
+  },
+  {
+    "template_id": "tmpl_009",
+    "name": "orientation_invite",
+    "subject": "You're Invited: New Hire Orientation - {{orientation_date}}",
+    "body": "Dear {{first_name}} {{last_name}},\n\nWelcome to {{company_name}}! You are invited to attend the New Hire Orientation session:\n\nDate: {{orientation_date}}\nTime: {{orientation_time}}\nLocation: {{orientation_location}}\nDuration: {{orientation_duration}}\n\nAgenda:\n{{agenda}}\n\nPlease bring:\n- Government-issued photo ID\n- Completed tax forms (W-4 and state equivalent)\n- Voided check or bank details for direct deposit setup\n\nLunch will be provided. If you have dietary restrictions, please reply to this email.\n\nCalendar invite: {{calendar_link}}\n\nIf you have any questions, contact {{hr_contact_name}} at {{hr_contact_email}}.\n\nSee you there!\n\nBest regards,\n{{hr_sender_name}}\nHuman Resources",
+    "channel": "email"
+  },
+  {
+    "template_id": "tmpl_010",
+    "name": "exit_interview_invite",
+    "subject": "Exit Interview Scheduled - {{interview_date}}",
+    "body": "Dear {{first_name}} {{last_name}},\n\nAs part of our offboarding process, we would like to invite you to an exit interview:\n\nDate: {{interview_date}}\nTime: {{interview_time}}\nLocation: {{interview_location}}\nInterviewer: {{interviewer_name}}\nDuration: Approximately {{interview_duration}}\n\nThe exit interview is an opportunity for you to share your experiences, feedback, and suggestions. Your input is valuable and helps us improve as an organization. All responses will be kept confidential.\n\nTopics we may discuss:\n- Your overall experience at {{company_name}}\n- Team dynamics and management\n- Career development opportunities\n- Suggestions for improvement\n\nIf the scheduled time does not work, please reply to reschedule.\n\nCalendar invite: {{calendar_link}}\n\nThank you,\n{{hr_sender_name}}\nHuman Resources",
+    "channel": "email"
+  },
+  {
+    "template_id": "tmpl_011",
+    "name": "manager_notification_new_hire",
+    "subject": "New Hire Notification: {{first_name}} {{last_name}} Joining Your Team",
+    "body": "Dear {{manager_name}},\n\nThis is to confirm that {{first_name}} {{last_name}} will be joining your team in the {{department}} department.\n\nNew Hire Details:\n- Name: {{first_name}} {{last_name}}\n- Job Title: {{job_title}}\n- Level: {{level}}\n- Start Date: {{start_date}}\n- Office Location: {{office_location}}\n- Employee ID: {{employee_id}}\n\nAs their manager, please complete the following before their start date:\n\n1. Prepare a 30-60-90 day plan\n2. Identify and confirm an onboarding buddy (suggested: {{suggested_buddy}})\n3. Schedule a welcome 1:1 for their first day\n4. Review and approve their access role requests\n5. Ensure their workspace/desk is set up\n6. Add them to relevant team meetings and channels\n\nOnboarding dashboard: {{dashboard_url}}\n\nPlease reach out to {{hr_contact_name}} ({{hr_contact_email}}) if you have any questions.\n\nBest regards,\nHR Onboarding Team",
+    "channel": "email"
+  },
+  {
+    "template_id": "tmpl_012",
+    "name": "manager_notification_departure",
+    "subject": "Employee Departure Notification: {{first_name}} {{last_name}}",
+    "body": "Dear {{manager_name}},\n\nThis is to confirm that {{first_name}} {{last_name}} ({{job_title}}, {{department}}) has submitted their resignation / been approved for departure.\n\nDeparture Details:\n- Employee: {{first_name}} {{last_name}} ({{employee_id}})\n- Last Working Day: {{last_day}}\n- Reason: {{departure_reason}}\n- Notice Period: {{notice_period}}\n\nAs their manager, please ensure the following are completed before their last day:\n\n1. Knowledge transfer plan and documentation\n2. Project handover to {{handover_contact_name}}\n3. Return of all IT assets (laptop, monitor, phone, headset, badges)\n4. Removal from team meetings and channels\n5. Final performance notes\n6. Notify clients/stakeholders as appropriate\n\nIT asset return must be completed by {{asset_return_date}}.\nAccess revocation will occur automatically on {{access_revocation_date}}.\n\nOffboarding dashboard: {{dashboard_url}}\n\nPlease reach out to {{hr_contact_name}} ({{hr_contact_email}}) if you have any questions.\n\nBest regards,\nHR Offboarding Team",
+    "channel": "email"
+  }
+]

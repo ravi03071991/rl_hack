@@ -1,10 +1,4 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-#
-# This source code is licensed under the BSD-style license found in the
-# LICENSE file in the root directory of this source tree.
-
-"""Basic Openenv Environment Client."""
+"""HR Onboarding/Offboarding Environment Client."""
 
 from typing import Dict
 
@@ -12,66 +6,59 @@ from openenv.core.client_types import StepResult
 from openenv.core.env_server.types import State
 from openenv.core import EnvClient
 
-from .models import BasicOpenenvAction, BasicOpenenvObservation
+from .models import HROnboardingAction, HROnboardingObservation
 
 
-class BasicOpenenvEnv(
-    EnvClient[BasicOpenenvAction, BasicOpenenvObservation]
+class HROnboardingEnv(
+    EnvClient[HROnboardingAction, HROnboardingObservation]
 ):
     """
-    Client for the Basic Openenv Environment.
+    Client for the HR Onboarding/Offboarding Environment.
 
-    This client maintains a persistent WebSocket connection to the environment server,
-    enabling efficient multi-step interactions with lower latency.
-    Each client instance has its own dedicated environment session on the server.
+    Maintains a persistent WebSocket connection to the environment server.
+    Each client instance has its own dedicated environment session.
 
     Example:
-        >>> # Connect to a running server
-        >>> with BasicOpenenvEnv(base_url="http://localhost:8000") as client:
+        >>> with HROnboardingEnv(base_url="http://localhost:7860") as client:
         ...     result = client.reset()
-        ...     print(result.observation.echoed_message)
+        ...     print(result.observation.instruction)
         ...
-        ...     result = client.step(BasicOpenenvAction(message="Hello!"))
-        ...     print(result.observation.echoed_message)
+        ...     result = client.step(HROnboardingAction(
+        ...         tool_name="hr_read_employee",
+        ...         arguments={"emp_id": "emp_0001"}
+        ...     ))
+        ...     print(result.observation.tool_result)
 
     Example with Docker:
-        >>> # Automatically start container and connect
-        >>> client = BasicOpenenvEnv.from_docker_image("basic_openenv-env:latest")
+        >>> client = HROnboardingEnv.from_docker_image("hr-onboarding-env:latest")
         >>> try:
         ...     result = client.reset()
-        ...     result = client.step(BasicOpenenvAction(message="Test"))
+        ...     result = client.step(HROnboardingAction(
+        ...         tool_name="hr_search_employees",
+        ...         arguments={"department": "Engineering"}
+        ...     ))
         ... finally:
         ...     client.close()
     """
 
-    def _step_payload(self, action: BasicOpenenvAction) -> Dict:
-        """
-        Convert BasicOpenenvAction to JSON payload for step message.
-
-        Args:
-            action: BasicOpenenvAction instance
-
-        Returns:
-            Dictionary representation suitable for JSON encoding
-        """
+    def _step_payload(self, action: HROnboardingAction) -> Dict:
+        """Convert HROnboardingAction to JSON payload for step message."""
         return {
-            "message": action.message,
+            "tool_name": action.tool_name,
+            "arguments": action.arguments,
         }
 
-    def _parse_result(self, payload: Dict) -> StepResult[BasicOpenenvObservation]:
-        """
-        Parse server response into StepResult[BasicOpenenvObservation].
-
-        Args:
-            payload: JSON response data from server
-
-        Returns:
-            StepResult with BasicOpenenvObservation
-        """
+    def _parse_result(self, payload: Dict) -> StepResult[HROnboardingObservation]:
+        """Parse server response into StepResult[HROnboardingObservation]."""
         obs_data = payload.get("observation", {})
-        observation = BasicOpenenvObservation(
-            echoed_message=obs_data.get("echoed_message", ""),
-            message_length=obs_data.get("message_length", 0),
+        observation = HROnboardingObservation(
+            task_id=obs_data.get("task_id", ""),
+            instruction=obs_data.get("instruction", ""),
+            tool_name=obs_data.get("tool_name", ""),
+            tool_result=obs_data.get("tool_result", {}),
+            step=obs_data.get("step", 0),
+            max_steps=obs_data.get("max_steps", 15),
+            available_tools=obs_data.get("available_tools", []),
             done=payload.get("done", False),
             reward=payload.get("reward"),
             metadata=obs_data.get("metadata", {}),
@@ -84,15 +71,7 @@ class BasicOpenenvEnv(
         )
 
     def _parse_state(self, payload: Dict) -> State:
-        """
-        Parse server response into State object.
-
-        Args:
-            payload: JSON response from state request
-
-        Returns:
-            State object with episode_id and step_count
-        """
+        """Parse server response into State object."""
         return State(
             episode_id=payload.get("episode_id"),
             step_count=payload.get("step_count", 0),

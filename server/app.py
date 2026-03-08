@@ -1,31 +1,22 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-#
-# This source code is licensed under the BSD-style license found in the
-# LICENSE file in the root directory of this source tree.
-
 """
-FastAPI application for the Basic Openenv Environment.
+FastAPI application for the HR Onboarding/Offboarding Environment.
 
-This module creates an HTTP server that exposes the BasicOpenenvEnvironment
+This module creates an HTTP server that exposes the HROnboardingEnvironment
 over HTTP and WebSocket endpoints, compatible with EnvClient.
 
 Endpoints:
     - POST /reset: Reset the environment
-    - POST /step: Execute an action
+    - POST /step: Execute an action (tool call)
     - GET /state: Get current environment state
     - GET /schema: Get action/observation schemas
     - WS /ws: WebSocket endpoint for persistent sessions
 
 Usage:
     # Development (with auto-reload):
-    uvicorn server.app:app --reload --host 0.0.0.0 --port 8000
+    uvicorn server.app:app --reload --host 0.0.0.0 --port 7860
 
     # Production:
-    uvicorn server.app:app --host 0.0.0.0 --port 8000 --workers 4
-
-    # Or run directly:
-    python -m server.app
+    uvicorn server.app:app --host 0.0.0.0 --port 7860 --workers 4
 """
 
 try:
@@ -36,8 +27,8 @@ except Exception as e:  # pragma: no cover
     ) from e
 
 # Import from local models.py (PYTHONPATH includes /app/env in Docker)
-from models import BasicOpenenvAction, BasicOpenenvObservation
-from .basic_openenv_environment import BasicOpenenvEnvironment
+from models import HROnboardingAction, HROnboardingObservation
+from .hr_onboarding_environment import HROnboardingEnvironment
 from fastapi.responses import RedirectResponse
 import os
 
@@ -48,11 +39,11 @@ os.environ.setdefault("ENABLE_WEB_INTERFACE", "true")
 
 # Create the app with web interface and README integration
 app = create_app(
-    BasicOpenenvEnvironment,
-    BasicOpenenvAction,
-    BasicOpenenvObservation,
-    env_name="basic_openenv",
-    max_concurrent_envs=1,  # increase this number to allow more concurrent WebSocket sessions
+    HROnboardingEnvironment,
+    HROnboardingAction,
+    HROnboardingObservation,
+    env_name="hr_onboarding_env",
+    max_concurrent_envs=4,
 )
 
 
@@ -63,18 +54,7 @@ def root_redirect():
 
 
 def main():
-    """
-    Entry point for direct execution via uv run or python -m.
-
-    This function enables running the server without Docker:
-        uv run --project . server
-        uv run --project . server --port 8001
-        python -m basic_openenv.server.app
-
-    For production deployments, consider using uvicorn directly with
-    multiple workers:
-        uvicorn basic_openenv.server.app:app --workers 4
-    """
+    """Entry point for direct execution."""
     import argparse
     import uvicorn
 

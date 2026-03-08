@@ -1,0 +1,162 @@
+[
+  {
+    "role_id": "role_001",
+    "name": "engineering_developer",
+    "permissions": ["code_repo_read", "code_repo_write", "ci_cd_trigger", "staging_deploy", "jira_access", "confluence_read", "slack_engineering"],
+    "department": "Engineering",
+    "level_requirement": "L1",
+    "description": "Standard developer access to code repositories, CI/CD pipelines, staging environments, and engineering collaboration tools."
+  },
+  {
+    "role_id": "role_002",
+    "name": "engineering_admin",
+    "permissions": ["code_repo_admin", "ci_cd_admin", "staging_deploy", "production_deploy", "infra_access", "secrets_management", "jira_admin", "confluence_write", "slack_engineering", "pagerduty_admin"],
+    "department": "Engineering",
+    "level_requirement": "L4",
+    "description": "Administrative engineering access including production deployments, infrastructure management, and secrets management."
+  },
+  {
+    "role_id": "role_003",
+    "name": "engineering_lead",
+    "permissions": ["code_repo_read", "code_repo_write", "code_repo_approve", "ci_cd_trigger", "staging_deploy", "production_deploy", "jira_admin", "confluence_write", "slack_engineering", "pagerduty_oncall"],
+    "department": "Engineering",
+    "level_requirement": "L3",
+    "description": "Engineering lead access with code review approval rights, production deployment capabilities, and project management tools."
+  },
+  {
+    "role_id": "role_004",
+    "name": "product_viewer",
+    "permissions": ["jira_access", "confluence_read", "analytics_dashboard_read", "slack_product", "figma_view"],
+    "department": "Product",
+    "level_requirement": "L1",
+    "description": "Read-only access to product management tools, analytics dashboards, and design files."
+  },
+  {
+    "role_id": "role_005",
+    "name": "product_manager",
+    "permissions": ["jira_admin", "confluence_write", "analytics_dashboard_read", "analytics_dashboard_write", "slack_product", "figma_view", "figma_comment", "feature_flags_manage", "a_b_testing_admin"],
+    "department": "Product",
+    "level_requirement": "L2",
+    "description": "Full product management access including analytics, feature flag management, A/B testing, and project tracking administration."
+  },
+  {
+    "role_id": "role_006",
+    "name": "finance_analyst",
+    "permissions": ["erp_read", "financial_reports_read", "expense_system_read", "budget_dashboard_read", "slack_finance", "confluence_read"],
+    "department": "Finance",
+    "level_requirement": "L1",
+    "description": "Read access to financial systems, ERP data, expense reports, and budget dashboards."
+  },
+  {
+    "role_id": "role_007",
+    "name": "finance_manager",
+    "permissions": ["erp_read", "erp_write", "financial_reports_read", "financial_reports_write", "expense_system_admin", "budget_dashboard_admin", "payroll_read", "slack_finance", "confluence_write", "vendor_management"],
+    "department": "Finance",
+    "level_requirement": "L3",
+    "description": "Full finance management access including ERP write, payroll viewing, expense administration, and vendor management."
+  },
+  {
+    "role_id": "role_008",
+    "name": "hr_coordinator",
+    "permissions": ["hris_read", "hris_write_basic", "recruiting_ats_read", "benefits_portal_read", "slack_hr", "confluence_read", "onboarding_system_read"],
+    "department": "Human Resources",
+    "level_requirement": "L1",
+    "description": "Basic HR operations access for coordinating onboarding, maintaining employee records, and viewing recruiting pipelines."
+  },
+  {
+    "role_id": "role_009",
+    "name": "hr_manager",
+    "permissions": ["hris_read", "hris_write", "hris_admin", "recruiting_ats_admin", "benefits_portal_admin", "payroll_read", "payroll_write", "compensation_data_read", "slack_hr", "confluence_write", "onboarding_system_admin", "offboarding_system_admin", "performance_review_admin"],
+    "department": "Human Resources",
+    "level_requirement": "L3",
+    "description": "Full HR management access including HRIS administration, recruiting, payroll, benefits, performance reviews, and onboarding/offboarding systems."
+  },
+  {
+    "role_id": "role_010",
+    "name": "security_analyst",
+    "permissions": ["siem_read", "vulnerability_scanner_read", "access_logs_read", "dlp_dashboard_read", "slack_security", "confluence_read", "incident_management_read"],
+    "department": "Security",
+    "level_requirement": "L2",
+    "description": "Security monitoring access for reviewing SIEM alerts, vulnerability scans, access logs, and DLP incidents."
+  },
+  {
+    "role_id": "role_011",
+    "name": "security_admin",
+    "permissions": ["siem_admin", "vulnerability_scanner_admin", "access_logs_read", "access_management_admin", "dlp_admin", "firewall_admin", "slack_security", "confluence_write", "incident_management_admin", "secrets_management", "identity_provider_admin"],
+    "department": "Security",
+    "level_requirement": "L4",
+    "description": "Full security administration including SIEM, access management, DLP, firewall rules, identity provider configuration, and incident response."
+  },
+  {
+    "role_id": "role_012",
+    "name": "data_science_analyst",
+    "permissions": ["data_warehouse_read", "jupyter_notebooks", "ml_platform_read", "analytics_dashboard_read", "slack_data", "confluence_read", "s3_data_buckets_read"],
+    "department": "Data Science",
+    "level_requirement": "L1",
+    "description": "Data analysis access including data warehouse queries, Jupyter notebooks, ML platform viewing, and analytics dashboards."
+  },
+  {
+    "role_id": "role_013",
+    "name": "data_science_lead",
+    "permissions": ["data_warehouse_read", "data_warehouse_write", "jupyter_notebooks", "ml_platform_admin", "analytics_dashboard_write", "gpu_cluster_access", "slack_data", "confluence_write", "s3_data_buckets_read", "s3_data_buckets_write", "model_registry_admin"],
+    "department": "Data Science",
+    "level_requirement": "L3",
+    "description": "Advanced data science access including data warehouse writes, ML platform administration, GPU cluster usage, and model registry management."
+  },
+  {
+    "role_id": "role_014",
+    "name": "sales_crm_user",
+    "permissions": ["crm_read", "crm_write", "sales_dashboard_read", "email_sequences", "slack_sales", "confluence_read", "contract_management_read"],
+    "department": "Sales",
+    "level_requirement": "L1",
+    "description": "Standard sales access to CRM, sales dashboards, email outreach tools, and contract viewing."
+  },
+  {
+    "role_id": "role_015",
+    "name": "sales_manager",
+    "permissions": ["crm_admin", "sales_dashboard_admin", "email_sequences", "commission_reports_read", "slack_sales", "confluence_write", "contract_management_write", "quota_management", "territory_management"],
+    "department": "Sales",
+    "level_requirement": "L3",
+    "description": "Sales management access including CRM administration, commission reports, quota setting, and territory management."
+  },
+  {
+    "role_id": "role_016",
+    "name": "marketing_specialist",
+    "permissions": ["marketing_automation_read", "marketing_automation_write", "social_media_management", "analytics_dashboard_read", "slack_marketing", "confluence_read", "cms_write", "design_tools_access"],
+    "department": "Marketing",
+    "level_requirement": "L1",
+    "description": "Marketing operations access including automation platforms, social media management, CMS, and analytics."
+  },
+  {
+    "role_id": "role_017",
+    "name": "customer_support_agent",
+    "permissions": ["ticketing_system_read", "ticketing_system_write", "knowledge_base_read", "crm_read", "slack_support", "confluence_read", "phone_system_access"],
+    "department": "Customer Support",
+    "level_requirement": "L1",
+    "description": "Customer support agent access to ticketing system, knowledge base, CRM viewing, and phone system."
+  },
+  {
+    "role_id": "role_018",
+    "name": "design_contributor",
+    "permissions": ["figma_edit", "design_system_read", "design_system_write", "slack_design", "confluence_read", "jira_access", "asset_library_access"],
+    "department": "Design",
+    "level_requirement": "L1",
+    "description": "Design team access including Figma editing, design system contributions, and asset library management."
+  },
+  {
+    "role_id": "role_019",
+    "name": "legal_counsel",
+    "permissions": ["contract_management_read", "contract_management_write", "legal_document_vault", "compliance_dashboard_read", "e_discovery_access", "slack_legal", "confluence_write", "vendor_management"],
+    "department": "Legal",
+    "level_requirement": "L2",
+    "description": "Legal team access to contract management, document vault, compliance monitoring, e-discovery tools, and vendor management."
+  },
+  {
+    "role_id": "role_020",
+    "name": "general_employee",
+    "permissions": ["email_access", "slack_general", "confluence_read", "hris_self_service", "benefits_portal_self_service", "expense_system_submit", "learning_platform_access"],
+    "department": "all",
+    "level_requirement": "L1",
+    "description": "Baseline access granted to all employees including email, Slack, self-service HR portal, benefits, expense submission, and learning platform."
+  }
+]

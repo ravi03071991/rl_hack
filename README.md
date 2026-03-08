@@ -226,10 +226,12 @@ rl_hack/
 ├── __init__.py                        # Module exports
 ├── client.py                          # HROnboardingEnv client
 ├── models.py                          # Action/Observation Pydantic models
+├── test_with_llm.py                   # Test script (GPT agent)
+├── .env                               # API keys (gitignored)
 └── server/
     ├── __init__.py
     ├── app.py                         # FastAPI application
-    ├── hr_environment.py              # Core environment (MCPEnvironment subclass)
+    ├── hr_onboarding_environment.py   # Core environment (Environment subclass)
     ├── world.py                       # World state (entities, RBAC, mutations)
     ├── tools.py                       # Tool registry (25 tools)
     ├── tasks.py                       # Task definitions + generation (77 tasks)
@@ -245,13 +247,88 @@ rl_hack/
     └── requirements.txt               # Server dependencies
 ```
 
+## Testing with an LLM Agent
+
+You can test the environment locally using GPT (or any OpenAI-compatible model) as the agent.
+
+### Setup
+
+1. Create a `.env` file in the repo root:
+   ```
+   OPENAI_API_KEY="sk-proj-..."
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install openai python-dotenv openenv-core
+   ```
+
+### Run
+
+```bash
+cd rl_hack
+
+# Test on default task (simple lookup)
+uv run python -m test_with_llm.py
+
+# Test a specific task by index (0-76)
+uv run python -m test_with_llm.py 14    # medium onboarding task
+uv run python -m test_with_llm.py 24    # complex full onboarding
+uv run python -m test_with_llm.py 55    # edge case (headcount limit)
+```
+
+The script will:
+- Reset the environment and pick a task
+- Use GPT-4o-mini to generate tool calls
+- Execute each tool call against the environment
+- Print the rubric evaluation with pass/fail per criterion
+
+### Example Output
+
+```
+Task ID: task_0015
+Difficulty: medium
+Instruction: Onboard new hire Priya Sharma to Engineering as L2 Software Engineer...
+
+--- Step 1/15 ---
+LLM: {"tool": "hr_create_employee", "params": {"name": "Priya Sharma", ...}}
+  Tool: hr_create_employee
+  Result: {"success": true, "employee": {"emp_id": "emp_0201", ...}}
+
+--- Step 2/15 ---
+LLM: {"tool": "onboarding_create_request", "params": {"employee_id": "emp_0201"}}
+  Tool: onboarding_create_request
+  Result: {"success": true, ...}
+
+FINAL EVALUATION
+Score: 100% (7/7 criteria)
+Passed: True
+  [PASS] created_employee
+  [PASS] correct_name
+  [PASS] correct_dept
+  [PASS] initiated_onboarding
+  [PASS] sequencing
+```
+
+### Task Index Reference
+
+| Index | Difficulty | Category | Description |
+|-------|-----------|----------|-------------|
+| 0-13 | Simple | Lookup/Onboarding | Single lookups, status checks |
+| 14-23 | Medium | Onboarding | Create employee + initiate workflow |
+| 24-34 | Complex | Onboarding | Full end-to-end with IT, access, comms |
+| 35-46 | Medium | Offboarding | Initiate offboarding + revoke access |
+| 47-54 | Complex | Offboarding | Full offboarding with asset reclaim |
+| 55-66 | Edge case | Various | Headcount limits, license caps, RBAC |
+| 67-76 | Complex | Cross-workflow | Transfers, rehires, manager departures |
+
 ## Building & Running
 
 ```bash
 # Build Docker image
 docker build -t hr-onboarding-env:latest -f server/Dockerfile .
 
-# Run locally
+# Run locally (as OpenEnv HTTP server)
 uvicorn server.app:app --reload --host 0.0.0.0 --port 7860
 
 # Deploy to HF Spaces

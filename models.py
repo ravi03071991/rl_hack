@@ -1,28 +1,45 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-#
-# This source code is licensed under the BSD-style license found in the
-# LICENSE file in the root directory of this source tree.
-
 """
-Data models for the Basic Openenv Environment.
+Data models for the HR Onboarding/Offboarding Environment.
 
-The basic_openenv environment is a simple test environment that echoes back messages.
+Defines the Action and Observation types used by the environment.
+The agent sends HROnboardingAction (a tool call) and receives
+HROnboardingObservation (the tool result + task context).
 """
+
+from typing import Any, Dict, List, Optional
 
 from pydantic import Field
 
 from openenv.core.env_server.types import Action, Observation
 
 
-class BasicOpenenvAction(Action):
-    """Action for the Basic Openenv environment - just a message to echo."""
+class HROnboardingAction(Action):
+    """Action for the HR environment — a tool call with name and arguments.
 
-    message: str = Field(..., description="Message to echo back")
+    The agent picks one of 25 available tools and provides arguments.
+
+    Example:
+        HROnboardingAction(
+            tool_name="hr_create_employee",
+            arguments={"name": "Priya Sharma", "department": "Engineering",
+                       "level": "L2", "role": "Software Engineer"}
+        )
+    """
+
+    tool_name: str = Field(..., description="Name of the tool to call (e.g. hr_create_employee, it_assign_asset)")
+    arguments: Dict[str, Any] = Field(default_factory=dict, description="Arguments to pass to the tool")
 
 
-class BasicOpenenvObservation(Observation):
-    """Observation from the Basic Openenv environment - the echoed message."""
+class HROnboardingObservation(Observation):
+    """Observation returned after each step in the HR environment.
 
-    echoed_message: str = Field(default="", description="The echoed message")
-    message_length: int = Field(default=0, description="Length of the echoed message")
+    Contains the tool execution result, task context, and episode progress.
+    """
+
+    task_id: str = Field(default="", description="Current task identifier")
+    instruction: str = Field(default="", description="Task instruction for the agent")
+    tool_name: str = Field(default="", description="Name of the tool that was called")
+    tool_result: Dict[str, Any] = Field(default_factory=dict, description="Result returned by the tool")
+    step: int = Field(default=0, description="Current step number")
+    max_steps: int = Field(default=15, description="Maximum steps allowed")
+    available_tools: List[str] = Field(default_factory=list, description="List of available tool names")

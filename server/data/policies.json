@@ -1,0 +1,288 @@
+{
+  "policies": [
+    {
+      "policy_id": "pol_001",
+      "title": "Onboarding Policy",
+      "department": "all",
+      "content": "All new hires must complete the onboarding process within 5 business days of their start date. The onboarding workflow is initiated automatically upon offer acceptance and must follow the department-specific step sequence without skipping or reordering steps. Failure to complete onboarding within the allotted window triggers an escalation to the department head and HR Business Partner.\n\nEach new hire must be assigned a designated onboarding buddy within their department before their first day. The buddy is responsible for guiding the new employee through cultural integration, tool setup verification, and initial project context. Managers must confirm onboarding completion in the HRIS system within 24 hours of the final step being finished.\n\nAll onboarding documentation, including signed NDAs, tax forms, and equipment receipts, must be uploaded to the employee's digital file in Workday before the end of the first week. Incomplete documentation will result in a hold on system access provisioning until resolved.",
+      "last_updated": "2025-11-15",
+      "key_rules": [
+        "onboarding_deadline_business_days: 5",
+        "buddy_assignment_required: true",
+        "buddy_must_be_same_department: true",
+        "manager_confirmation_deadline_hours: 24",
+        "documentation_upload_deadline: end_of_first_week",
+        "incomplete_docs_blocks_access: true",
+        "steps_must_follow_sequence: true"
+      ]
+    },
+    {
+      "policy_id": "pol_002",
+      "title": "Offboarding Policy",
+      "department": "all",
+      "content": "The offboarding process must be initiated within 24 hours of a resignation or termination decision. For voluntary departures, the standard notice period is 15 business days. For involuntary terminations, system access must be revoked within 2 hours of the termination meeting. All offboarding steps must be completed within 3 business days of the employee's last working day.\n\nThe departing employee's manager is responsible for ensuring knowledge transfer is completed before the last day. A knowledge transfer checklist must be signed off by both the manager and a designated knowledge recipient. Any company intellectual property, code, documents, or data on personal devices must be verified as deleted or returned.\n\nThe final paycheck, including any accrued PTO, must be processed within the pay period following the last working day. Exit interviews are mandatory for all full-time employees and must be conducted by an HR representative who is not the employee's direct HR Business Partner to ensure objectivity.",
+      "last_updated": "2025-12-01",
+      "key_rules": [
+        "offboarding_initiation_deadline_hours: 24",
+        "voluntary_notice_period_business_days: 15",
+        "involuntary_access_revocation_hours: 2",
+        "offboarding_completion_deadline_business_days: 3",
+        "knowledge_transfer_signoff_required: true",
+        "exit_interview_mandatory: true",
+        "exit_interview_conducted_by: independent_hr_representative"
+      ]
+    },
+    {
+      "policy_id": "pol_003",
+      "title": "Remote Work Policy",
+      "department": "all",
+      "content": "Employees at level L3 and above are eligible for fully remote work arrangements with manager approval. L1 and L2 employees must work on-site for a minimum of 3 days per week during their first 6 months, after which they may request remote work privileges. Remote work requests must be submitted through the HRIS system and approved by both the direct manager and department head.\n\nRemote employees must maintain a secure home office environment that meets the company's information security standards. This includes using a company-approved VPN at all times, ensuring a private workspace for confidential calls, and maintaining a reliable internet connection with a minimum speed of 50 Mbps download. Equipment provided for remote work remains company property and must be returned upon offboarding.\n\nInternational remote work is permitted for up to 30 calendar days per year with prior VP-level approval and tax compliance review by the Finance team. Employees working remotely from a different state for more than 14 consecutive days must notify HR for tax withholding adjustments.",
+      "last_updated": "2025-10-20",
+      "key_rules": [
+        "remote_eligible_level: L3+",
+        "junior_onsite_minimum_days: 3",
+        "junior_onsite_period_months: 6",
+        "vpn_required: true",
+        "minimum_internet_speed_mbps: 50",
+        "international_remote_max_days: 30",
+        "international_remote_approval_level: VP",
+        "state_change_notification_threshold_days: 14"
+      ]
+    },
+    {
+      "policy_id": "pol_004",
+      "title": "Equipment Return Policy",
+      "department": "all",
+      "content": "All company-issued equipment must be returned within 5 business days of an employee's last working day. Equipment includes but is not limited to laptops, monitors, keyboards, mice, headsets, security hardware tokens, and mobile devices. Remote employees will receive a prepaid shipping label and packaging materials via email on their last day.\n\nEquipment must be returned in working condition. Normal wear and tear is expected, but damage resulting from negligence or misuse may result in a deduction from the final paycheck, up to the replacement cost of the item. The IT department will conduct a condition assessment within 48 hours of receiving returned equipment and document findings in the asset management system.\n\nFailure to return equipment within the specified window will trigger an escalation process: a reminder email at day 3, a formal notice at day 5, a payroll deduction notice at day 10, and legal action for equipment valued over $1,000 if not returned within 30 days. Employees who return all equipment on or before their last day are eligible for the \"clean exit\" expedited reference process.",
+      "last_updated": "2025-09-30",
+      "key_rules": [
+        "return_deadline_business_days: 5",
+        "condition_assessment_deadline_hours: 48",
+        "reminder_email_day: 3",
+        "formal_notice_day: 5",
+        "payroll_deduction_notice_day: 10",
+        "legal_action_threshold_value: 1000",
+        "legal_action_deadline_days: 30",
+        "clean_exit_incentive: true"
+      ]
+    },
+    {
+      "policy_id": "pol_005",
+      "title": "Data Access Policy",
+      "department": "all",
+      "content": "Data access is granted on a strict need-to-know basis following the principle of least privilege. Access levels are categorized into four tiers: Public (Tier 1), Internal (Tier 2), Confidential (Tier 3), and Restricted (Tier 4). Tier 1 and Tier 2 access is provisioned automatically during onboarding based on department assignment. Tier 3 access requires manager approval and a completed data handling training certification. Tier 4 access requires VP-level approval, security team review, and a signed data access agreement.\n\nAll data access permissions are reviewed quarterly as part of the access recertification process. Managers must confirm or revoke access for each direct report within 10 business days of the review notification. Unconfirmed access is automatically revoked after the review window closes. Any access anomalies detected by the security team trigger an immediate investigation.\n\nUpon offboarding, all data access must be revoked within 1 hour for Tier 4, 4 hours for Tier 3, and 24 hours for Tier 1 and Tier 2. Data downloads exceeding 500 MB within 7 days of a resignation notice trigger an automatic alert to the security team for review.",
+      "last_updated": "2026-01-10",
+      "key_rules": [
+        "access_model: least_privilege",
+        "tier3_requires_manager_approval: true",
+        "tier3_requires_data_handling_training: true",
+        "tier4_requires_vp_approval: true",
+        "tier4_requires_security_review: true",
+        "quarterly_access_review: true",
+        "review_confirmation_deadline_business_days: 10",
+        "offboarding_tier4_revocation_hours: 1",
+        "offboarding_tier3_revocation_hours: 4",
+        "offboarding_tier1_tier2_revocation_hours: 24",
+        "download_alert_threshold_mb: 500",
+        "download_alert_window_days: 7"
+      ]
+    },
+    {
+      "policy_id": "pol_006",
+      "title": "Contractor Policy",
+      "department": "all",
+      "content": "Contractors may be engaged for a maximum duration of 12 months per engagement. Extensions beyond 12 months require VP-level approval and a written justification demonstrating why the role cannot be converted to a full-time position. No contractor may work for the company for more than 18 cumulative months within any 24-month period to maintain compliance with labor classification regulations.\n\nContractors are issued limited-access credentials that restrict them to project-specific tools and data. Contractors may not be granted Tier 3 or Tier 4 data access under any circumstances. All contractor accounts are provisioned with an automatic expiration date matching their contract end date. Contractor onboarding follows the same department-specific steps as full-time employees, with the exception of benefits enrollment and equity grant steps.\n\nContractor rate approvals follow a tiered structure: engagements under $100/hour require manager approval, $100-$200/hour require director approval, and over $200/hour require VP approval. All contractor invoices must be submitted through the procurement system and approved by the engaging manager within 5 business days.",
+      "last_updated": "2025-11-01",
+      "key_rules": [
+        "contractor_max_duration_months: 12",
+        "extension_approval_level: VP",
+        "max_cumulative_months_in_24: 18",
+        "contractor_max_data_tier: 2",
+        "auto_expiration_enabled: true",
+        "rate_approval_under_100: manager",
+        "rate_approval_100_to_200: director",
+        "rate_approval_over_200: VP",
+        "invoice_approval_deadline_business_days: 5"
+      ]
+    },
+    {
+      "policy_id": "pol_007",
+      "title": "Termination Policy",
+      "department": "all",
+      "content": "Involuntary terminations must be approved through a multi-level review process before execution. The termination request must be initiated by the direct manager, reviewed by the HR Business Partner, approved by the department head, and given final authorization by the VP of HR. For employees at L5 or above, CEO approval is additionally required. The entire approval chain must be completed within 5 business days of initiation.\n\nPerformance-based terminations require documented evidence of at least two performance improvement plan (PIP) cycles, each lasting a minimum of 30 days, unless the termination is for cause (policy violation, misconduct, or illegal activity). Terminations for cause may bypass the PIP requirement but still require the full approval chain. All termination documentation must be retained for a minimum of 7 years.\n\nSeverance packages are offered based on tenure: employees with less than 1 year receive 2 weeks of base pay, 1-3 years receive 4 weeks, 3-5 years receive 8 weeks, and 5+ years receive 12 weeks plus continued benefits for the severance period. Severance agreements must include a standard release of claims and are subject to legal review before being presented to the employee.",
+      "last_updated": "2025-12-15",
+      "key_rules": [
+        "approval_chain: [manager, hr_bp, dept_head, vp_hr]",
+        "l5_plus_requires_ceo_approval: true",
+        "approval_chain_deadline_business_days: 5",
+        "pip_cycles_required: 2",
+        "pip_minimum_duration_days: 30",
+        "for_cause_bypasses_pip: true",
+        "documentation_retention_years: 7",
+        "severance_under_1yr_weeks: 2",
+        "severance_1_to_3yr_weeks: 4",
+        "severance_3_to_5yr_weeks: 8",
+        "severance_over_5yr_weeks: 12"
+      ]
+    },
+    {
+      "policy_id": "pol_008",
+      "title": "Department Transfer Policy",
+      "department": "all",
+      "content": "Internal department transfers are available to employees who have been in their current role for a minimum of 12 months and have received a performance rating of \"Meets Expectations\" or above in their most recent review cycle. Transfer requests must be submitted through the HRIS system and require approval from both the current manager and the receiving department head. A transfer cannot be approved if the receiving department is at its headcount limit.\n\nThe transfer process follows a structured timeline: the employee submits a transfer request, the current manager has 5 business days to acknowledge, the receiving department conducts interviews within 10 business days, and a final decision is communicated within 15 business days of the initial request. If approved, the effective transfer date must be at least 30 days from approval to allow for transition planning.\n\nUpon transfer, the employee undergoes a modified onboarding process in the new department, which includes tool provisioning, team introductions, and domain-specific training. Access to the previous department's tools and data is revoked within 5 business days of the transfer date, unless a temporary exception is approved by both department heads for knowledge transfer purposes, which may not exceed 15 business days.",
+      "last_updated": "2025-10-05",
+      "key_rules": [
+        "minimum_tenure_months: 12",
+        "minimum_performance_rating: meets_expectations",
+        "current_manager_approval_required: true",
+        "receiving_head_approval_required: true",
+        "headcount_limit_enforced: true",
+        "manager_acknowledgment_deadline_business_days: 5",
+        "interview_deadline_business_days: 10",
+        "decision_deadline_business_days: 15",
+        "transition_buffer_days: 30",
+        "old_access_revocation_business_days: 5",
+        "temporary_access_exception_max_days: 15"
+      ]
+    },
+    {
+      "policy_id": "pol_009",
+      "title": "Rehire Policy",
+      "department": "all",
+      "content": "Former employees are eligible for rehire consideration if they departed in good standing and their exit record does not include any policy violations, termination for cause, or unresolved compliance issues. A minimum cooling-off period of 6 months must elapse between the departure date and any rehire application. Former employees who were terminated for cause are permanently ineligible for rehire.\n\nRehired employees retain their original employee ID with a rehire suffix (e.g., emp_0042_R1) for tracking purposes. Prior tenure is recognized for PTO accrual purposes if the gap in employment is less than 24 months; otherwise, the employee starts with the standard new-hire PTO allocation. Rehires must complete the full onboarding process regardless of prior tenure, though the onboarding buddy assignment may be waived at the manager's discretion.\n\nRehire offers must be approved by the department head and VP of HR. Compensation for rehires is benchmarked against current market rates and internal equity; prior salary does not guarantee equivalent compensation. Any prior equity grants that were forfeited are not reinstated. Rehired employees are subject to a new 90-day probationary period.",
+      "last_updated": "2025-08-22",
+      "key_rules": [
+        "good_standing_required: true",
+        "cooling_off_period_months: 6",
+        "terminated_for_cause_permanently_ineligible: true",
+        "original_id_retained_with_suffix: true",
+        "tenure_recognition_gap_max_months: 24",
+        "full_onboarding_required: true",
+        "buddy_waivable_for_rehire: true",
+        "approval_required: [dept_head, vp_hr]",
+        "prior_equity_not_reinstated: true",
+        "probation_period_days: 90"
+      ]
+    },
+    {
+      "policy_id": "pol_010",
+      "title": "Badge Access Policy",
+      "department": "Security",
+      "content": "Physical badge access is provisioned based on department assignment and role level. Standard office access (floors 1-3, common areas, cafeteria) is granted to all employees. Restricted areas including the server room (floor B1), executive suite (floor 4), and security operations center (floor B2) require L4+ level clearance and explicit approval from the Security department head. Temporary visitor badges are valid for 8 hours and must be signed in and out at reception.\n\nBadge access changes take effect within 4 hours of approval for standard areas and within 1 hour for restricted areas. All badge access events are logged and retained for 12 months. The security team conducts monthly audits of badge access logs to identify anomalies such as after-hours access or tailgating attempts. Employees who lose their badge must report it within 2 hours; the lost badge is immediately deactivated and a replacement is issued within 24 hours.\n\nUpon offboarding, badge access must be deactivated before the employee leaves the building on their last day. For involuntary terminations, badge deactivation occurs simultaneously with the termination notification. Badge access is automatically suspended if an employee has not badged in for 30 consecutive days, pending manager confirmation of status.",
+      "last_updated": "2026-01-20",
+      "key_rules": [
+        "standard_access_areas: [floors_1_3, common_areas, cafeteria]",
+        "restricted_access_requires_level: L4+",
+        "restricted_access_requires_security_head_approval: true",
+        "visitor_badge_validity_hours: 8",
+        "standard_access_change_hours: 4",
+        "restricted_access_change_hours: 1",
+        "access_log_retention_months: 12",
+        "lost_badge_report_deadline_hours: 2",
+        "replacement_badge_deadline_hours: 24",
+        "offboarding_deactivation: before_building_exit",
+        "inactivity_suspension_days: 30"
+      ]
+    },
+    {
+      "policy_id": "pol_011",
+      "title": "Software License Policy",
+      "department": "all",
+      "content": "Software licenses are provisioned based on department-specific required tools lists maintained by each department head. License requests for tools outside the approved department list require director-level approval and a business justification. All software must be vetted by the Security team for compliance before being added to any department's approved list. The annual software budget per employee is capped at $5,000 for standard roles and $8,000 for engineering and data science roles.\n\nLicenses are assigned to individual employees and may not be shared. When an employee goes on leave exceeding 30 days, their licenses may be temporarily reassigned with manager approval. Upon offboarding, all licenses must be deactivated within 24 hours and reallocated or released to reduce costs. The IT team maintains a license utilization dashboard and flags licenses with less than 10% usage over 90 days for review.\n\nEnterprise license agreements are negotiated annually by the procurement team. Department heads must submit license forecasts by Q3 each year for the following fiscal year's budget planning. Any mid-year license additions exceeding $10,000 in total cost require CFO approval.",
+      "last_updated": "2025-11-18",
+      "key_rules": [
+        "provisioning_based_on_department_list: true",
+        "non_standard_requires_director_approval: true",
+        "security_vetting_required: true",
+        "annual_budget_per_employee_standard: 5000",
+        "annual_budget_per_employee_eng_ds: 8000",
+        "license_sharing_prohibited: true",
+        "leave_reassignment_threshold_days: 30",
+        "offboarding_deactivation_hours: 24",
+        "low_usage_flag_threshold_percent: 10",
+        "low_usage_flag_window_days: 90",
+        "mid_year_addition_cfo_approval_threshold: 10000"
+      ]
+    },
+    {
+      "policy_id": "pol_012",
+      "title": "Approval Chain Policy",
+      "department": "all",
+      "content": "All administrative actions affecting employee status, access, or compensation follow a defined approval chain based on the action type and impact level. Standard actions (PTO requests, expense reports under $500, tool access within department list) require only direct manager approval. Elevated actions (role changes, salary adjustments, cross-department access) require manager plus director approval. Critical actions (terminations, L5+ promotions, Tier 4 data access, budget exceptions) require the full chain up to VP level.\n\nApproval requests have defined SLA windows: standard actions must be resolved within 2 business days, elevated actions within 5 business days, and critical actions within 5 business days. If an approver does not respond within the SLA window, the request automatically escalates to the next level in the chain. Approvers may delegate their approval authority to a designated backup during planned absences, but delegation must be registered in the HRIS system in advance.\n\nAll approval decisions are logged with timestamps, approver identity, and any comments. Approval logs are immutable and retained for 5 years for audit purposes. Retrospective approvals (approving an action after it has already been taken) are flagged as policy violations and trigger a compliance review.",
+      "last_updated": "2025-12-10",
+      "key_rules": [
+        "standard_action_approval: manager",
+        "elevated_action_approval: [manager, director]",
+        "critical_action_approval: [manager, director, vp]",
+        "standard_sla_business_days: 2",
+        "elevated_sla_business_days: 5",
+        "critical_sla_business_days: 5",
+        "auto_escalation_on_sla_breach: true",
+        "delegation_must_be_pre_registered: true",
+        "approval_log_retention_years: 5",
+        "retrospective_approval_triggers_compliance_review: true",
+        "expense_standard_threshold: 500"
+      ]
+    },
+    {
+      "policy_id": "pol_013",
+      "title": "Probation Policy",
+      "department": "all",
+      "content": "All new hires and rehires are subject to a 90-day probationary period beginning on their start date. During probation, employees receive bi-weekly check-ins with their manager and a formal 30-day, 60-day, and 90-day performance review. The probation period may be extended by up to 30 additional days if the employee shows improvement potential but has not yet met all performance benchmarks, subject to HR Business Partner approval.\n\nDuring probation, either the company or the employee may end the employment relationship with 5 business days' notice instead of the standard 15 business days. Employees on probation are not eligible for internal transfers, promotions, or remote work arrangements. Probationary employees accrue PTO from day one but may not use more than 3 PTO days during the probation period without manager and HR approval.\n\nSuccessful completion of probation is confirmed in writing by the manager and recorded in the HRIS system. Employees who fail probation are subject to the standard offboarding process. Probation outcomes must be documented with specific examples of performance against the role's defined success criteria established during onboarding.",
+      "last_updated": "2025-09-15",
+      "key_rules": [
+        "probation_duration_days: 90",
+        "check_in_frequency: bi_weekly",
+        "formal_reviews_at_days: [30, 60, 90]",
+        "max_extension_days: 30",
+        "extension_requires_hr_bp_approval: true",
+        "notice_period_during_probation_days: 5",
+        "transfer_eligible_during_probation: false",
+        "promotion_eligible_during_probation: false",
+        "remote_work_eligible_during_probation: false",
+        "max_pto_during_probation_days: 3",
+        "completion_confirmed_in_writing: true"
+      ]
+    },
+    {
+      "policy_id": "pol_014",
+      "title": "Exit Interview Policy",
+      "department": "all",
+      "content": "Exit interviews are mandatory for all departing full-time employees and optional for contractors with engagements exceeding 6 months. The exit interview must be conducted between 3 and 1 business days before the employee's last working day. Exit interviews are conducted by an HR representative who has not been directly involved in any HR cases related to the departing employee to ensure neutrality and encourage candid feedback.\n\nThe exit interview follows a standardized questionnaire covering job satisfaction, management effectiveness, team dynamics, growth opportunities, compensation competitiveness, and reasons for departure. The interviewer may ask follow-up questions but must not attempt to make a counter-offer or negotiate retention during the exit interview. Retention conversations, if appropriate, must happen separately and before the exit interview is scheduled.\n\nExit interview data is anonymized and aggregated quarterly for trend analysis. Individual exit interview records are classified as Confidential (Tier 3) and accessible only to HR leadership and the VP of the relevant department. Insights are presented to the executive team quarterly with recommendations for retention improvements. Departing employees may request to receive a copy of their exit interview transcript within 30 days of departure.",
+      "last_updated": "2025-10-30",
+      "key_rules": [
+        "mandatory_for_full_time: true",
+        "optional_for_contractors_over_months: 6",
+        "timing_window_business_days_before_last_day: [1, 3]",
+        "interviewer_must_be_neutral: true",
+        "counter_offer_during_interview_prohibited: true",
+        "data_classification: tier_3_confidential",
+        "quarterly_trend_analysis_required: true",
+        "transcript_request_window_days: 30",
+        "standardized_questionnaire_required: true",
+        "accessible_by: [hr_leadership, dept_vp]"
+      ]
+    },
+    {
+      "policy_id": "pol_015",
+      "title": "Asset Management Policy",
+      "department": "all",
+      "content": "All company assets issued to employees are tracked in the centralized asset management system with a unique asset tag. Assets are categorized as High Value (laptops, monitors, mobile devices valued over $500), Standard (keyboards, mice, headsets, adapters), and Consumable (cables, screen protectors, cleaning supplies). High Value assets require employee signature upon receipt and are associated with the employee's record in the HRIS system.\n\nAsset lifecycle management follows defined thresholds: laptops are refreshed every 36 months, monitors every 48 months, and mobile devices every 24 months. Early refresh requests require director approval and a documented business justification. Employees may purchase their assigned laptop at depreciated book value upon offboarding, subject to IT security wipe and data destruction verification.\n\nLost or stolen assets must be reported to IT and Security within 4 hours of discovery. For devices containing company data, a remote wipe is initiated immediately upon report. The employee is not held financially responsible for lost or stolen assets provided the report is filed within the required window and there is no evidence of negligence. Annual asset audits are conducted in Q1, and discrepancies must be resolved within 15 business days.",
+      "last_updated": "2026-02-01",
+      "key_rules": [
+        "asset_tracking_system: centralized",
+        "high_value_threshold: 500",
+        "high_value_requires_signature: true",
+        "laptop_refresh_months: 36",
+        "monitor_refresh_months: 48",
+        "mobile_refresh_months: 24",
+        "early_refresh_requires_director_approval: true",
+        "employee_purchase_at_depreciated_value: true",
+        "lost_stolen_report_deadline_hours: 4",
+        "remote_wipe_on_report: true",
+        "annual_audit_quarter: Q1",
+        "audit_discrepancy_resolution_business_days: 15"
+      ]
+    }
+  ]
+}

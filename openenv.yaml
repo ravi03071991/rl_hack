@@ -1,5 +1,5 @@
 spec_version: 1
-name: basic_openenv
+name: hr_onboarding_env
 type: space
 runtime: fastapi
 app: server.app:app
