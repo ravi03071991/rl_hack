@@ -376,7 +376,7 @@ openenv push
 
 ## Training & Results
 
-We use Unsloth + GRPO to train an LLM agent on this environment. See [`train_hr_agent.ipynb`](train_hr_agent.ipynb) for the full training notebook.
+We use Unsloth + GRPO to train an LLM agent on this environment. See [`train_hr_agent.ipynb`](train_hr_agent.ipynb) for the full training notebook and [W&B run](https://wandb.ai/ravi03071991/hr-agent-training/runs/bgent3o3?nw=nwuserravi03071991) for live training metrics.
 
 ### Setup
 
