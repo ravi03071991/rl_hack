@@ -439,12 +439,14 @@ class TaskGenerator:
             name = emp["name"]
             instruction = (
                 f"Initiate offboarding for {name} ({emp['emp_id']}) who {scenario.split(' is ')[1] if ' is ' in scenario else 'is leaving'}. "
+                f"Set the reason to '{reason}'. "
                 f"Revoke their system access and notify IT."
             )
 
             criteria = [
                 {"name": "created_request", "description": "Created offboarding request", "check": "tool_used:offboarding_create_request"},
-                {"name": "correct_reason", "description": "Set correct reason", "check": f"param_value:offboarding_create_request.reason={reason}"},
+                {"name": "correct_emp", "description": "Used correct employee ID", "check": f"param_value:offboarding_create_request.employee_id={emp['emp_id']}"},
+                {"name": "correct_reason", "description": "Set correct reason", "check": f"param_contains:offboarding_create_request.reason={reason}"},
                 {"name": "revoked_access", "description": "Revoked IT access", "check": "tool_used:it_revoke_access"},
                 {"name": "notified", "description": "Sent notification", "check": "tool_used_any:email_send,slack_send_message"},
             ]
@@ -684,7 +686,7 @@ class TaskGenerator:
                 category="offboarding",
                 expected_tools=["offboarding_create_request", "it_revoke_access", "offboarding_complete_step"],
                 rubric_criteria=[
-                    {"name": "created_request", "description": "Created offboarding with termination reason", "check": "param_value:offboarding_create_request.reason=termination"},
+                    {"name": "created_request", "description": "Created offboarding with termination reason", "check": "param_contains:offboarding_create_request.reason=terminat"},
                     {"name": "revoked_access", "description": "Revoked all access", "check": "tool_used:it_revoke_access"},
                     {"name": "no_farewell", "description": "Did NOT send farewell communications", "check": "tool_not_used:slack_send_message"},
                     {"name": "completed_steps", "description": "Completed termination steps", "check": "tool_used:offboarding_complete_step"},
