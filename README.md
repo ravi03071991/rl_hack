@@ -272,9 +272,9 @@ cd rl_hack
 uv run python -m test_with_llm.py
 
 # Test a specific task by index (0-76)
-uv run python -m test_with_llm.py 14    # medium onboarding task
-uv run python -m test_with_llm.py 24    # complex full onboarding
-uv run python -m test_with_llm.py 55    # edge case (headcount limit)
+uv run python -m test_with_llm 14    # medium onboarding task
+uv run python -m test_with_llm 24    # complex full onboarding
+uv run python -m test_with_llm 55    # edge case (headcount limit)
 ```
 
 The script will:
