@@ -367,7 +367,7 @@ We use Unsloth + GRPO to train an LLM agent on this environment. See [`train_hr_
 
 ### Setup
 
-- **Model**: Qwen 2.5-7B-Instruct (4-bit quantized, LoRA rank 8)
+- **Model**: Llama 3.2-1B-Instruct (4-bit quantized, LoRA rank 8)
 - **Algorithm**: GRPO (Group Relative Policy Optimization)
 - **Reward functions**: Valid JSON + rubric score + efficiency
 - **Training**: 300 steps, 6 generations per prompt, lr=5e-5 with cosine schedule
