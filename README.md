@@ -17,7 +17,7 @@ tags:
 
 An OpenEnv-compatible RL environment that simulates enterprise HR onboarding and offboarding workflows. The agent interacts with a realistic HR system (200+ employees, 8 departments, RBAC, approval chains) by calling tools to complete multi-step tasks.
 
-Built for the Scaler AI hackathon (Statement 3.1).
+Built for the [OpenEnv Hackathon SF](https://cerebralvalley.ai/e/openenv-hackathon-sf/details) — **Statement 3.1: Professional Tasks** (Scaler AI Labs partner theme: Multi-App RL Environment for Enterprise Workflows).
 
 ## Quick Start
 
