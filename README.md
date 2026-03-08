@@ -30,6 +30,21 @@ Built for the [OpenEnv Hackathon SF](https://cerebralvalley.ai/e/openenv-hackath
 | Complex Tasks | 0.26 | 0.68 | **+162%** |
 | Pass Rate | 15.4% | 19.2% | +3.8pp |
 
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [Tools / Actions (25 MCP Tools)](#tools--actions-25-mcp-tools)
+- [Tasks (77 tasks)](#tasks-77-tasks-across-4-categories)
+- [World State (500+ entities)](#world-state-500-entities)
+- [Reward / Rubric](#reward--rubric)
+- [Environment API](#environment-api)
+- [Project Structure](#project-structure)
+- [Training & Results](#training--results)
+- [Testing with an LLM Agent](#testing-with-an-llm-agent)
+- [Installation](#installation)
+- [Building & Running](#building--running)
+- [Live Demo](#live-demo)
+
 ## Quick Start
 
 ```python
